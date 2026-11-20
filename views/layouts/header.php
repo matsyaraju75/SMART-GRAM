@@ -13,6 +13,8 @@ $currentUri = '/' . trim($currentUri, '/');
 
 $isHome = ($currentUri === '/' || $currentUri === '/home');
 $isSubmit = str_starts_with($currentUri, '/submit');
+$isWelfare = str_starts_with($currentUri, '/welfare');
+$isProjects = str_starts_with($currentUri, '/projects');
 $isTrack = str_starts_with($currentUri, '/track');
 $isAbout = str_starts_with($currentUri, '/about');
 $isDashboard = (str_starts_with($currentUri, '/dashboard') || str_starts_with($currentUri, '/admin') || str_starts_with($currentUri, '/staff') || str_starts_with($currentUri, '/officer') || str_starts_with($currentUri, '/grievance'));
@@ -134,6 +136,20 @@ $isDashboard = (str_starts_with($currentUri, '/dashboard') || str_starts_with($c
                         <i class="bi bi-pencil-square me-1"></i>
                         <span><?= e(__('common.nav_submit')) ?></span>
                         <?php if ($isSubmit): ?><span class="active-dot"></span><?php endif; ?>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-custom <?= $isWelfare ? 'active' : '' ?>" href="<?= url('welfare') ?>">
+                        <i class="bi bi-shield-check me-1"></i>
+                        <span><?= e(__('common.nav_welfare')) ?></span>
+                        <?php if ($isWelfare): ?><span class="active-dot"></span><?php endif; ?>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-custom <?= $isProjects ? 'active' : '' ?>" href="<?= url('projects') ?>">
+                        <i class="bi bi-kanban me-1"></i>
+                        <span><?= e(__('common.nav_projects')) ?></span>
+                        <?php if ($isProjects): ?><span class="active-dot"></span><?php endif; ?>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -263,6 +279,16 @@ $isDashboard = (str_starts_with($currentUri, '/dashboard') || str_starts_with($c
                 <li class="nav-item">
                     <a class="nav-link <?= $isSubmit ? 'active' : '' ?>" href="<?= url('submit') ?>">
                         <i class="bi bi-pencil-square me-2"></i> <?= e(__('common.nav_submit')) ?>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?= $isWelfare ? 'active' : '' ?>" href="<?= url('welfare') ?>">
+                        <i class="bi bi-shield-check me-2"></i> <?= e(__('common.nav_welfare')) ?>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?= $isProjects ? 'active' : '' ?>" href="<?= url('projects') ?>">
+                        <i class="bi bi-kanban me-2"></i> <?= e(__('common.nav_projects')) ?>
                     </a>
                 </li>
                 <li class="nav-item">

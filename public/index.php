@@ -64,6 +64,8 @@ use App\Controllers\TrackingController;
 use App\Controllers\WorkflowController;
 use App\Controllers\ChatbotController;
 use App\Controllers\LocationController;
+use App\Controllers\WelfareController;
+use App\Controllers\ProjectsController;
 
 Session::start();
 
@@ -105,6 +107,9 @@ $router->get('/', [HomeController::class, 'index']);
 $router->get('/home', [HomeController::class, 'index']);
 $router->get('/about', [HomeController::class, 'about']);
 $router->get('/health', [HomeController::class, 'health']);
+$router->get('/welfare', [WelfareController::class, 'index']);
+$router->post('/api/welfare/check', [WelfareController::class, 'checkEligibility']);
+$router->get('/projects', [ProjectsController::class, 'index']);
 
 // Phase 3: Citizen Grievance Submission Flow
 $router->get('/submit', [GrievanceController::class, 'showSubmitForm']);

@@ -1,28 +1,122 @@
 </main>
 
-<!-- Footer -->
-<footer class="bg-white border-top py-4 mt-5">
-    <div class="container text-center text-muted small">
-        <div class="row align-items-center gy-3">
-            <div class="col-md-6 text-md-start">
-                <div class="d-flex align-items-center gap-2 mb-1">
-                    <span class="fw-bold text-success fs-6"><?= e(__('common.app_name')) ?></span>
-                    <span class="text-secondary">| <?= e(__('common.app_title')) ?></span>
+<!-- Enhanced Footer -->
+<footer class="smart-footer mt-5">
+    <div class="container py-5">
+        <div class="row gy-4">
+
+            <!-- Column 1: Smart Gram Website -->
+            <div class="col-lg-3 col-md-6">
+                <div class="d-flex align-items-center gap-2 mb-3">
+                    <div class="brand-logo-emblem d-flex align-items-center justify-content-center" style="width:42px;height:42px;border-radius:50%;background:#fff;color:var(--primary);">
+                        <i class="bi bi-tree-fill fs-5"></i>
+                    </div>
+                    <div>
+                        <h5 class="footer-heading mb-0" style="font-size:1.1rem;">Smart Gram</h5>
+                        <small class="text-white-50" style="font-size:0.72rem;">Digital Village Governance</small>
+                    </div>
                 </div>
-                <div class="text-secondary"><?= e(__('common.footer_tagline')) ?></div>
-                <div class="text-muted" style="font-size: 0.78rem;"><?= e(__('common.footer_panchayat')) ?></div>
+                <p class="text-white-50 small mb-3" style="line-height:1.65;">
+                    Empowering rural communities through transparent digital governance, efficient service delivery, and citizen participation across Andhra Pradesh.
+                </p>
+                <div class="d-flex gap-2">
+                    <a href="#" class="footer-social-icon" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="footer-social-icon" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+                    <a href="#" class="footer-social-icon" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                    <a href="#" class="footer-social-icon" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+                    <a href="#" class="footer-social-icon" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+                </div>
             </div>
-            <div class="col-md-6 text-md-end">
-                <div class="mb-2">
-                    <span class="text-muted">&copy; <?= date('Y') ?> Smart Gram. <?= e(__('common.copyright')) ?>.</span>
+
+            <!-- Column 2: Statutory & Public Transparency -->
+            <div class="col-lg-3 col-md-6">
+                <h5 class="footer-heading mb-3">
+                    <i class="bi bi-bank2 me-2"></i>Statutory &amp; Public Transparency
+                </h5>
+                <ul class="list-unstyled mb-0">
+                    <li class="mb-2">
+                        <a href="#" class="footer-link"><i class="bi bi-file-earmark-text me-2"></i>RTI Information</a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="#" class="footer-link"><i class="bi bi-clipboard-data me-2"></i>Audit Reports</a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="#" class="footer-link"><i class="bi bi-currency-rupee me-2"></i>Financial Disclosures</a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="#" class="footer-link"><i class="bi bi-shield-check me-2"></i>Citizen Charter</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Column 3: Emergency Village Helplines -->
+            <div class="col-lg-3 col-md-6">
+                <h5 class="footer-heading mb-3">
+                    <i class="bi bi-telephone-fill me-2"></i>Emergency Village Helplines
+                </h5>
+                <ul class="list-unstyled mb-0 small">
+                    <li class="d-flex justify-content-between align-items-center mb-2 text-white-50">
+                        <span><i class="bi bi-shield-shaded me-2 text-warning"></i>Police</span>
+                        <span class="badge bg-white bg-opacity-10 rounded-pill px-3">100 / 112</span>
+                    </li>
+                    <li class="d-flex justify-content-between align-items-center mb-2 text-white-50">
+                        <span><i class="bi bi-heart-pulse-fill me-2 text-danger"></i>Ambulance</span>
+                        <span class="badge bg-white bg-opacity-10 rounded-pill px-3">108</span>
+                    </li>
+                    <li class="d-flex justify-content-between align-items-center mb-2 text-white-50">
+                        <span><i class="bi bi-fire me-2 text-warning"></i>Fire Station</span>
+                        <span class="badge bg-white bg-opacity-10 rounded-pill px-3">101</span>
+                    </li>
+                    <li class="d-flex justify-content-between align-items-center mb-2 text-white-50">
+                        <span><i class="bi bi-lightning-charge-fill me-2 text-info"></i>Electricity</span>
+                        <span class="badge bg-white bg-opacity-10 rounded-pill px-3">1912</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Column 4: Panchayat Secretariat Contact -->
+            <div class="col-lg-3 col-md-6">
+                <h5 class="footer-heading mb-3">
+                    <i class="bi bi-building me-2"></i>Panchayat Secretariat
+                </h5>
+                <ul class="list-unstyled mb-0 small text-white-50">
+                    <li class="mb-2">
+                        <i class="bi bi-geo-alt-fill me-2 text-accent"></i>Gram Panchayat Office, Main Road,<br>
+                        <span class="ms-4">Village, Mandal, Andhra Pradesh</span>
+                    </li>
+                    <li class="mb-2">
+                        <i class="bi bi-telephone-fill me-2 text-accent"></i>+91 86XX-XXXXXX
+                    </li>
+                    <li class="mb-2">
+                        <i class="bi bi-envelope-fill me-2 text-accent"></i>contact@smartgram.gov.in
+                    </li>
+                    <li class="mb-0">
+                        <i class="bi bi-clock-fill me-2 text-accent"></i>Mon–Sat: 9:00 AM – 5:00 PM
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="footer-bottom-bar">
+        <div class="container">
+            <div class="row align-items-center gy-2">
+                <div class="col-md-4 text-center text-md-start">
+                    <span class="text-white-50 small">&copy; <?= date('Y') ?> Smart Gram. All rights reserved.</span>
                 </div>
-                <div class="d-flex justify-content-md-end justify-content-center gap-2 align-items-center">
-                    <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-1 rounded-pill">
-                        Phase 2: Bilingual UI Active
-                    </span>
-                    <a href="<?= switch_lang_url(current_lang() === 'te' ? 'en' : 'te') ?>" class="text-decoration-none text-muted small">
-                        <i class="bi bi-translate"></i> <?= current_lang() === 'te' ? 'Switch to English' : 'తెలుగులోకి మార్చండి' ?>
-                    </a>
+                <div class="col-md-4 text-center">
+                    <div class="d-flex justify-content-center gap-3 small">
+                        <a href="#" class="footer-link">Privacy Policy</a>
+                        <span class="text-white-50">|</span>
+                        <a href="#" class="footer-link">Terms of Service</a>
+                        <span class="text-white-50">|</span>
+                        <a href="#" class="footer-link">Security Guidelines</a>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center text-md-end">
+                    <span class="text-white-50 small">Made with <span class="text-danger">❤️</span> in Andhra Pradesh</span>
                 </div>
             </div>
         </div>

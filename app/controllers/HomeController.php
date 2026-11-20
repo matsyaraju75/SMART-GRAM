@@ -28,10 +28,43 @@ class HomeController {
         // Fetch active village info
         $village = $db->query("SELECT * FROM villages WHERE is_active = 1 LIMIT 1")->fetch(PDO::FETCH_ASSOC);
 
+        // Live Village Operational Metrics (demo data)
+        $stats = [
+            'total_grievances' => '1,248',
+            'resolution_rate'  => '94.2%',
+            'pending_issues'   => '18',
+            'families_served'  => '620+',
+        ];
+
+        // Service categories for the counter services grid
+        $serviceCategories = [
+            ['icon' => 'bi-droplet-half',          'color' => 'primary',   'title_key' => 'home_svc_water_title',       'desc_key' => 'home_svc_water_desc',       'sla' => '48h'],
+            ['icon' => 'bi-lightning-charge-fill',  'color' => 'warning',   'title_key' => 'home_svc_electric_title',    'desc_key' => 'home_svc_electric_desc',    'sla' => '24h'],
+            ['icon' => 'bi-moisture',               'color' => 'info',      'title_key' => 'home_svc_drainage_title',    'desc_key' => 'home_svc_drainage_desc',    'sla' => '72h'],
+            ['icon' => 'bi-signpost-split-fill',    'color' => 'secondary', 'title_key' => 'home_svc_road_title',        'desc_key' => 'home_svc_road_desc',        'sla' => '7d'],
+            ['icon' => 'bi-trash3-fill',            'color' => 'success',   'title_key' => 'home_svc_sanitation_title',  'desc_key' => 'home_svc_sanitation_desc',  'sla' => '24h'],
+            ['icon' => 'bi-heart-pulse-fill',       'color' => 'danger',    'title_key' => 'home_svc_health_title',      'desc_key' => 'home_svc_health_desc',      'sla' => '48h'],
+            ['icon' => 'bi-building',               'color' => 'dark',      'title_key' => 'home_svc_building_title',    'desc_key' => 'home_svc_building_desc',    'sla' => '15d'],
+            ['icon' => 'bi-hospital',               'color' => 'primary',   'title_key' => 'home_svc_clinic_title',      'desc_key' => 'home_svc_clinic_desc',      'sla' => '48h'],
+            ['icon' => 'bi-flower1',                'color' => 'success',   'title_key' => 'home_svc_agriculture_title', 'desc_key' => 'home_svc_agriculture_desc', 'sla' => '7d'],
+        ];
+
+        // Recent Gram Sabha resolutions (demo data)
+        $recentResolutions = [
+            ['date' => '2026-11-15', 'number' => 'GS/RES/2026/042', 'subject_key' => 'home_res_sub1', 'status' => 'approved'],
+            ['date' => '2026-11-10', 'number' => 'GS/RES/2026/041', 'subject_key' => 'home_res_sub2', 'status' => 'pending'],
+            ['date' => '2026-11-02', 'number' => 'GS/RES/2026/040', 'subject_key' => 'home_res_sub3', 'status' => 'approved'],
+            ['date' => '2026-10-25', 'number' => 'GS/RES/2026/039', 'subject_key' => 'home_res_sub4', 'status' => 'sanctioned'],
+            ['date' => '2026-10-18', 'number' => 'GS/RES/2026/038', 'subject_key' => 'home_res_sub5', 'status' => 'approved'],
+        ];
+
         view('citizen/home', [
-            'title' => __('common.app_title') . ' — ' . __('common.app_name'),
-            'categories' => $categories,
-            'village' => $village
+            'title'             => __('common.app_title') . ' — ' . __('common.app_name'),
+            'categories'        => $categories,
+            'village'           => $village,
+            'stats'             => $stats,
+            'serviceCategories' => $serviceCategories,
+            'recentResolutions' => $recentResolutions,
         ]);
     }
 
@@ -103,4 +136,3 @@ class HomeController {
         exit;
     }
 }
-

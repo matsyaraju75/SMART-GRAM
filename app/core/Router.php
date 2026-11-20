@@ -49,9 +49,22 @@ class Router {
 
                 // If POST request, validate CSRF automatically if token is sent or required
                 if ($method === 'POST') {
-                    $token = $_POST['_csrf_token'] ?? null;
+                    $token = $_POST['_csrf_token'] ?? $_POST['csrf_token'] ?? ($_SERVER['HTTP_X_CSRF_TOKEN'] ?? null);
+                    if (!$token) {
+                        $rawBody = file_get_contents('php://input');
+                        if (!empty($rawBody)) {
+                            $decoded = json_decode($rawBody, true);
+                            $token = $decoded['_csrf_token'] ?? $decoded['csrf_token'] ?? null;
+                        }
+                    }
+
                     if (!Csrf::validate($token)) {
                         http_response_code(403);
+                        if (str_starts_with($uri, '/api/')) {
+                            header('Content-Type: application/json; charset=utf-8');
+                            echo json_encode(['success' => false, 'error' => 'CSRF_INVALID', 'message' => 'Invalid or missing CSRF token']);
+                            return;
+                        }
                         die("<div style='font-family:sans-serif; padding:20px; background:#f8d7da; color:#721c24; border-radius:6px; margin:30px;'>
                             <h3>403 Forbidden - Security Token Mismatch</h3>
                             <p>Your session has expired or the submission was invalid. Please refresh the page and try again.</p>

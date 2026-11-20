@@ -9,6 +9,8 @@ return [
     'tagline' => 'మీ సమస్యను సులభంగా తెలియజేయండి',
     'nav_home' => 'హోమ్',
     'nav_submit' => 'సమస్యను పంపండి',
+    'nav_welfare' => 'సంక్షేమ పథకాలు',
+    'nav_projects' => 'ప్రాజెక్టులు & సభ',
     'nav_track' => 'స్థితిని చూడండి',
     'nav_about' => 'Smart Gram గురించి',
     'nav_staff_login' => 'అధికారుల లాగిన్',
