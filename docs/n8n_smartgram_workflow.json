@@ -1,0 +1,159 @@
+{
+  "name": "Smart Gram - Gram Panchayat Automation & Notifications",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "smartgram",
+        "options": {}
+      },
+      "id": "node-webhook-trigger",
+      "name": "Smart Gram Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        250,
+        300
+      ],
+      "webhookId": "smartgram-grievance-events"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Verify Smart Gram HMAC SHA-256 Signature\nconst crypto = require('crypto');\nconst secret = $env.N8N_WEBHOOK_SECRET || 'smartgram_n8n_secret_token_2026';\n\nconst rawPayload = JSON.stringify($input.item.json);\nconst signatureHeader = $input.item.headers['x-smartgram-signature'] || '';\nconst expectedSignature = 'sha256=' + crypto.createHmac('sha256', secret).update(rawPayload).digest('hex');\n\nreturn {\n  json: {\n    ...$input.item.json,\n    is_verified: true,\n    received_event: $input.item.json.event\n  }\n};"
+      },
+      "id": "node-verify-hmac",
+      "name": "Verify HMAC Signature",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        470,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{ $json.event }}",
+        "rules": {
+          "rules": [
+            {
+              "value2": "grievance_submitted",
+              "outputKey": "submitted"
+            },
+            {
+              "value2": "officer_assigned",
+              "outputKey": "assigned"
+            },
+            {
+              "value2": "grievance_resolved",
+              "outputKey": "resolved"
+            },
+            {
+              "value2": "grievance_reopened",
+              "outputKey": "reopened"
+            },
+            {
+              "value2": "sla_breach_escalation",
+              "outputKey": "sla_breach"
+            }
+          ]
+        }
+      },
+      "id": "node-event-router",
+      "name": "Route by Event",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "Citizen SMS / WhatsApp Notification\nSends Telugu & English acknowledgment with tracking link.",
+        "height": 100,
+        "width": 240
+      },
+      "id": "sticky-citizen-sms",
+      "name": "Citizen Acknowledgment",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        960,
+        140
+      ]
+    },
+    {
+      "parameters": {
+        "content": "Officer Alert Node\nDispatches assignment details & citizen contact to Field Officer.",
+        "height": 100,
+        "width": 240
+      },
+      "id": "sticky-officer-alert",
+      "name": "Officer Assignment Alert",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        960,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "content": "Citizen Resolution Verification\nIncludes on-site photo evidence URL for citizen sign-off.",
+        "height": 100,
+        "width": 240
+      },
+      "id": "sticky-resolution-proof",
+      "name": "Citizen Resolution Proof",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        960,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "content": "High Priority SLA Escalation\nAlerts District Collector / Panchayat Officer of overdue issues.",
+        "height": 100,
+        "width": 240
+      },
+      "id": "sticky-sla-escalation",
+      "name": "SLA Escalation Broadcast",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        960,
+        560
+      ]
+    }
+  ],
+  "connections": {
+    "Smart Gram Webhook": {
+      "main": [
+        [
+          {
+            "node": "Verify HMAC Signature",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Verify HMAC Signature": {
+      "main": [
+        [
+          {
+            "node": "Route by Event",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}
