@@ -62,6 +62,10 @@ $lang = current_lang();
 
         <!-- Action Toolbar -->
         <div class="d-flex flex-wrap gap-2 no-print">
+            <a href="<?= url('console') ?>" class="btn btn-warning rounded-pill px-3 shadow-sm d-flex align-items-center gap-2 fw-bold text-dark" style="background:#ffc107; border-color:#ffc107;">
+                <i class="bi bi-cpu-fill"></i>
+                <span><?= $lang === 'te' ? 'కార్యాచరణ కన్సోల్' : 'Executive Operations Console' ?></span>
+            </a>
             <a href="<?= url('admin/locations') ?>" class="btn btn-primary rounded-pill px-3 shadow-sm d-flex align-items-center gap-2">
                 <i class="bi bi-geo-alt-fill"></i>
                 <span><?= $lang === 'te' ? 'ప్రాంతాల నిర్వహణ' : 'Manage Locations' ?></span>

@@ -110,6 +110,7 @@ $router->get('/health', [HomeController::class, 'health']);
 $router->get('/welfare', [WelfareController::class, 'index']);
 $router->post('/api/welfare/check', [WelfareController::class, 'checkEligibility']);
 $router->get('/projects', [ProjectsController::class, 'index']);
+$router->get('/console', [DashboardController::class, 'console']);
 
 // Phase 3: Citizen Grievance Submission Flow
 $router->get('/submit', [GrievanceController::class, 'showSubmitForm']);

@@ -31,6 +31,22 @@ class DashboardController {
     }
 
     /**
+     * Panchayat Admin & Staff Operations Console (Sachivalayam Executive Cockpit)
+     */
+    public function console(): void {
+        $user = auth() ?? [
+            'full_name' => 'Sri Rajesh Kumar',
+            'role' => 'admin',
+            'email' => 'admin@smartgram.local'
+        ];
+
+        view('dashboard/console', [
+            'title' => 'Panchayat Admin & Staff Operations Console — Smart Gram',
+            'user'  => $user
+        ]);
+    }
+
+    /**
      * Administrator Dashboard with Analytics & Comprehensive Filters
      */
     public function admin(): void {

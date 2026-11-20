@@ -35,3 +35,6 @@ Desktop.ini
 *.log
 *.tmp
 *.bak
+tests/test_cookies*.txt
+storage/backups/*.sql
+

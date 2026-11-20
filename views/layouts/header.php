@@ -15,6 +15,7 @@ $isHome = ($currentUri === '/' || $currentUri === '/home');
 $isSubmit = str_starts_with($currentUri, '/submit');
 $isWelfare = str_starts_with($currentUri, '/welfare');
 $isProjects = str_starts_with($currentUri, '/projects');
+$isConsole = str_starts_with($currentUri, '/console');
 $isTrack = str_starts_with($currentUri, '/track');
 $isAbout = str_starts_with($currentUri, '/about');
 $isDashboard = (str_starts_with($currentUri, '/dashboard') || str_starts_with($currentUri, '/admin') || str_starts_with($currentUri, '/staff') || str_starts_with($currentUri, '/officer') || str_starts_with($currentUri, '/grievance'));
@@ -166,6 +167,13 @@ $isDashboard = (str_starts_with($currentUri, '/dashboard') || str_starts_with($c
                         <?php if ($isAbout): ?><span class="active-dot"></span><?php endif; ?>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-custom text-warning <?= $isConsole ? 'active' : '' ?>" href="<?= url('console') ?>">
+                        <i class="bi bi-cpu-fill me-1"></i>
+                        <span><?= $activeLang === 'te' ? 'అడ్మిన్ / స్టాఫ్ కన్సోల్' : 'Admin / Staff Console' ?></span>
+                        <?php if ($isConsole): ?><span class="active-dot"></span><?php endif; ?>
+                    </a>
+                </li>
                 <?php if ($currentUser): ?>
                 <li class="nav-item">
                     <a class="nav-link nav-link-custom text-warning <?= $isDashboard ? 'active' : '' ?>" href="<?= url('dashboard') ?>">
@@ -299,6 +307,11 @@ $isDashboard = (str_starts_with($currentUri, '/dashboard') || str_starts_with($c
                 <li class="nav-item">
                     <a class="nav-link <?= $isAbout ? 'active' : '' ?>" href="<?= url('about') ?>">
                         <i class="bi bi-info-circle-fill me-2"></i> <?= e(__('common.nav_about')) ?>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-warning <?= $isConsole ? 'active' : '' ?>" href="<?= url('console') ?>">
+                        <i class="bi bi-cpu-fill me-2"></i> <?= $activeLang === 'te' ? 'అడ్మిన్ / స్టాఫ్ కన్సోల్' : 'Admin / Staff Console' ?>
                     </a>
                 </li>
                 <?php if ($currentUser): ?>
